@@ -118,7 +118,7 @@ export function ContactForm() {
     try {
       // Envio real via EmailJS
       const serviceId = "seu_service_id"; // Substitua pelo seu Service ID do EmailJS
-      const templateId = "seu_template_id"; // Substitua pelo seu Template ID do EmailJS
+      const templateId = "template_hweci8o"; // Substitua pelo seu Template ID do EmailJS
       const userId = "seu_user_id"; // Substitua pelo seu User ID do EmailJS
 
       const templateParams = {
