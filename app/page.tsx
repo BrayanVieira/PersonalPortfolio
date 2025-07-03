@@ -1242,30 +1242,46 @@ export default function Portfolio() {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-center max-w-3xl mx-auto"
+            className="flex flex-col md:flex-row-reverse items-center md:items-center gap-10 max-w-5xl mx-auto text-center md:text-left"
           >
-            <h2 className="text-4xl font-bold mb-8 bg-gradient-to-r from-teal-600 to-cyan-600 dark:from-teal-400 dark:to-cyan-400 bg-clip-text text-transparent">
-              Sobre Mim
-            </h2>
-            <p className="text-lg text-slate-600 dark:text-slate-300 leading-relaxed mb-6">
-              Profissional de Tecnologia da Informação com 3 anos de experiência
-              em desenvolvimento de software, aliado a uma sólida base em
-              suporte técnico e gestão de infraestrutura de TI. Tenho me
-              dedicado ao aprimoramento contínuo de minhas habilidades técnicas,
-              com foco em linguagens de programação, frameworks e metodologias
-              ágeis, visando sempre oferecer soluções inovadoras e eficientes.
-            </p>
-            <p className="text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
-              Experiência prévia no suporte ao usuário, gestão de redes e
-              implementação de projetos de software, desenvolvendo visão
-              analítica, resiliência e capacidade de resolver problemas de forma
-              prática e eficaz. Busco integrar equipes multidisciplinares,
-              agregando valor através do desenvolvimento de soluções
-              tecnológicas para negócios dinâmicos e desafiadores. Comprometido
-              com a excelência e evolução profissional, preparado para colaborar
-              em projetos que exijam criatividade, inovação e uma abordagem
-              estratégica voltada para resultados.
-            </p>
+            <img
+              src="/profile.jpg"
+              alt="Foto de perfil"
+              width={380}
+              height={380}
+              style={{
+                borderRadius: "9999px",
+                boxShadow: "0 4px 32px rgba(0,0,0,0.18)",
+                border: "6px solid #fff",
+                objectFit: "cover",
+              }}
+              className="mt-6 md:mt-0 md:ml-auto"
+            />
+            <div>
+              <h2 className="text-4xl font-bold mb-8 bg-gradient-to-r from-teal-600 to-cyan-600 dark:from-teal-400 dark:to-cyan-400 bg-clip-text text-transparent">
+                Sobre Mim
+              </h2>
+              <p className="text-lg text-slate-600 dark:text-slate-300 leading-relaxed mb-6">
+                Profissional de Tecnologia da Informação com 3 anos de
+                experiência em desenvolvimento de software, aliado a uma sólida
+                base em suporte técnico e gestão de infraestrutura de TI. Tenho
+                me dedicado ao aprimoramento contínuo de minhas habilidades
+                técnicas, com foco em linguagens de programação, frameworks e
+                metodologias ágeis, visando sempre oferecer soluções inovadoras
+                e eficientes.
+              </p>
+              <p className="text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+                Experiência prévia no suporte ao usuário, gestão de redes e
+                implementação de projetos de software, desenvolvendo visão
+                analítica, resiliência e capacidade de resolver problemas de
+                forma prática e eficaz. Busco integrar equipes
+                multidisciplinares, agregando valor através do desenvolvimento
+                de soluções tecnológicas para negócios dinâmicos e desafiadores.
+                Comprometido com a excelência e evolução profissional, preparado
+                para colaborar em projetos que exijam criatividade, inovação e
+                uma abordagem estratégica voltada para resultados.
+              </p>
+            </div>
           </motion.div>
         </div>
       </section>

@@ -1,39 +1,45 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Textarea } from "@/components/ui/textarea"
-import { Badge } from "@/components/ui/badge"
-import { X, Plus, Save, User, Briefcase, Mail } from "lucide-react"
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import { Badge } from "@/components/ui/badge";
+import { X, Plus, Save, User, Briefcase, Mail } from "lucide-react";
 
 interface PersonalInfo {
-  name: string
-  title: string
-  subtitle: string
-  bio1: string
-  bio2: string
-  email: string
-  linkedin: string
-  github: string
-  website?: string
+  name: string;
+  title: string;
+  subtitle: string;
+  bio1: string;
+  bio2: string;
+  email: string;
+  linkedin: string;
+  github: string;
+  website?: string;
 }
 
 interface Project {
-  title: string
-  description: string
-  tech: string[]
-  github: string
-  demo: string
-  gradient: string
+  title: string;
+  description: string;
+  tech: string[];
+  github: string;
+  demo: string;
+  gradient: string;
 }
 
 interface Skill {
-  name: string
-  description: string
-  color: string
+  name: string;
+  description: string;
+  color: string;
 }
 
 export default function PersonalizationForm() {
@@ -42,12 +48,12 @@ export default function PersonalizationForm() {
     title: "",
     subtitle: "",
     bio1: "",
-    bio2: "",
+    bio2: "Possuo conhecimento e experiência em Selenium e automatizações de processos complexos utilizando Python.",
     email: "",
     linkedin: "",
     github: "",
     website: "",
-  })
+  });
 
   const [projects, setProjects] = useState<Project[]>([
     {
@@ -58,17 +64,25 @@ export default function PersonalizationForm() {
       demo: "",
       gradient: "from-emerald-400 to-blue-500",
     },
-  ])
+  ]);
 
   const [skills, setSkills] = useState<Skill[]>([
     { name: "Python", description: "Django, Flask, FastAPI", color: "emerald" },
-    { name: "JavaScript", description: "React, Node.js, TypeScript", color: "blue" },
-    { name: "Database", description: "PostgreSQL, MongoDB, Redis", color: "purple" },
+    {
+      name: "JavaScript",
+      description: "React, Node.js, TypeScript",
+      color: "blue",
+    },
+    {
+      name: "Database",
+      description: "PostgreSQL, MongoDB, Redis",
+      color: "purple",
+    },
     { name: "DevOps", description: "Docker, AWS, CI/CD", color: "pink" },
-  ])
+  ]);
 
-  const [newTech, setNewTech] = useState("")
-  const [activeProject, setActiveProject] = useState(0)
+  const [newTech, setNewTech] = useState("");
+  const [activeProject, setActiveProject] = useState(0);
 
   const gradientOptions = [
     "from-emerald-400 to-blue-500",
@@ -77,7 +91,7 @@ export default function PersonalizationForm() {
     "from-blue-400 to-cyan-500",
     "from-pink-400 to-rose-500",
     "from-indigo-400 to-purple-500",
-  ]
+  ];
 
   const addProject = () => {
     setProjects([
@@ -90,56 +104,62 @@ export default function PersonalizationForm() {
         demo: "",
         gradient: gradientOptions[projects.length % gradientOptions.length],
       },
-    ])
-  }
+    ]);
+  };
 
   const removeProject = (index: number) => {
     if (projects.length > 1) {
-      setProjects(projects.filter((_, i) => i !== index))
+      setProjects(projects.filter((_, i) => i !== index));
       if (activeProject >= projects.length - 1) {
-        setActiveProject(Math.max(0, activeProject - 1))
+        setActiveProject(Math.max(0, activeProject - 1));
       }
     }
-  }
+  };
 
   const addTechToProject = (projectIndex: number) => {
     if (newTech.trim()) {
-      const updatedProjects = [...projects]
-      updatedProjects[projectIndex].tech.push(newTech.trim())
-      setProjects(updatedProjects)
-      setNewTech("")
+      const updatedProjects = [...projects];
+      updatedProjects[projectIndex].tech.push(newTech.trim());
+      setProjects(updatedProjects);
+      setNewTech("");
     }
-  }
+  };
 
   const removeTechFromProject = (projectIndex: number, techIndex: number) => {
-    const updatedProjects = [...projects]
-    updatedProjects[projectIndex].tech.splice(techIndex, 1)
-    setProjects(updatedProjects)
-  }
+    const updatedProjects = [...projects];
+    updatedProjects[projectIndex].tech.splice(techIndex, 1);
+    setProjects(updatedProjects);
+  };
 
-  const updateProject = (index: number, field: keyof Project, value: string) => {
-    const updatedProjects = [...projects]
-    updatedProjects[index] = { ...updatedProjects[index], [field]: value }
-    setProjects(updatedProjects)
-  }
+  const updateProject = (
+    index: number,
+    field: keyof Project,
+    value: string
+  ) => {
+    const updatedProjects = [...projects];
+    updatedProjects[index] = { ...updatedProjects[index], [field]: value };
+    setProjects(updatedProjects);
+  };
 
   const updateSkill = (index: number, field: keyof Skill, value: string) => {
-    const updatedSkills = [...skills]
-    updatedSkills[index] = { ...updatedSkills[index], [field]: value }
-    setSkills(updatedSkills)
-  }
+    const updatedSkills = [...skills];
+    updatedSkills[index] = { ...updatedSkills[index], [field]: value };
+    setSkills(updatedSkills);
+  };
 
   const generatePortfolioCode = () => {
     const portfolioData = {
       personalInfo,
       projects,
       skills,
-    }
+    };
 
     // Aqui você pode implementar a lógica para aplicar as mudanças
-    console.log("Portfolio Data:", portfolioData)
-    alert("Dados salvos! Em breve implementaremos a aplicação automática das mudanças.")
-  }
+    console.log("Portfolio Data:", portfolioData);
+    alert(
+      "Dados salvos! Em breve implementaremos a aplicação automática das mudanças."
+    );
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-teal-50 p-6">
@@ -148,7 +168,10 @@ export default function PersonalizationForm() {
           <h1 className="text-4xl font-bold bg-gradient-to-r from-teal-600 to-cyan-600 bg-clip-text text-transparent mb-4">
             🎨 Personalize Seu Portfólio
           </h1>
-          <p className="text-slate-600">Preencha suas informações para criar um portfólio único e profissional</p>
+          <p className="text-slate-600">
+            Preencha suas informações para criar um portfólio único e
+            profissional
+          </p>
         </div>
 
         {/* Informações Pessoais */}
@@ -158,7 +181,9 @@ export default function PersonalizationForm() {
               <User className="h-5 w-5" />
               Informações Pessoais
             </CardTitle>
-            <CardDescription>Dados básicos que aparecerão no seu portfólio</CardDescription>
+            <CardDescription>
+              Dados básicos que aparecerão no seu portfólio
+            </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -168,7 +193,9 @@ export default function PersonalizationForm() {
                   id="name"
                   placeholder="João Silva"
                   value={personalInfo.name}
-                  onChange={(e) => setPersonalInfo({ ...personalInfo, name: e.target.value })}
+                  onChange={(e) =>
+                    setPersonalInfo({ ...personalInfo, name: e.target.value })
+                  }
                 />
               </div>
               <div>
@@ -177,7 +204,9 @@ export default function PersonalizationForm() {
                   id="title"
                   placeholder="Desenvolvedor Full Stack"
                   value={personalInfo.title}
-                  onChange={(e) => setPersonalInfo({ ...personalInfo, title: e.target.value })}
+                  onChange={(e) =>
+                    setPersonalInfo({ ...personalInfo, title: e.target.value })
+                  }
                 />
               </div>
             </div>
@@ -188,7 +217,9 @@ export default function PersonalizationForm() {
                 id="subtitle"
                 placeholder="Python • React • Node.js"
                 value={personalInfo.subtitle}
-                onChange={(e) => setPersonalInfo({ ...personalInfo, subtitle: e.target.value })}
+                onChange={(e) =>
+                  setPersonalInfo({ ...personalInfo, subtitle: e.target.value })
+                }
               />
             </div>
 
@@ -198,7 +229,9 @@ export default function PersonalizationForm() {
                 id="bio1"
                 placeholder="Conte sobre sua experiência, paixões e objetivos profissionais..."
                 value={personalInfo.bio1}
-                onChange={(e) => setPersonalInfo({ ...personalInfo, bio1: e.target.value })}
+                onChange={(e) =>
+                  setPersonalInfo({ ...personalInfo, bio1: e.target.value })
+                }
                 rows={3}
               />
             </div>
@@ -209,7 +242,9 @@ export default function PersonalizationForm() {
                 id="bio2"
                 placeholder="Adicione mais detalhes sobre sua abordagem de trabalho e especialidades..."
                 value={personalInfo.bio2}
-                onChange={(e) => setPersonalInfo({ ...personalInfo, bio2: e.target.value })}
+                onChange={(e) =>
+                  setPersonalInfo({ ...personalInfo, bio2: e.target.value })
+                }
                 rows={3}
               />
             </div>
@@ -233,7 +268,9 @@ export default function PersonalizationForm() {
                   type="email"
                   placeholder="joao@exemplo.com"
                   value={personalInfo.email}
-                  onChange={(e) => setPersonalInfo({ ...personalInfo, email: e.target.value })}
+                  onChange={(e) =>
+                    setPersonalInfo({ ...personalInfo, email: e.target.value })
+                  }
                 />
               </div>
               <div>
@@ -242,7 +279,12 @@ export default function PersonalizationForm() {
                   id="linkedin"
                   placeholder="https://linkedin.com/in/joaosilva"
                   value={personalInfo.linkedin}
-                  onChange={(e) => setPersonalInfo({ ...personalInfo, linkedin: e.target.value })}
+                  onChange={(e) =>
+                    setPersonalInfo({
+                      ...personalInfo,
+                      linkedin: e.target.value,
+                    })
+                  }
                 />
               </div>
             </div>
@@ -254,7 +296,9 @@ export default function PersonalizationForm() {
                   id="github"
                   placeholder="https://github.com/joaosilva"
                   value={personalInfo.github}
-                  onChange={(e) => setPersonalInfo({ ...personalInfo, github: e.target.value })}
+                  onChange={(e) =>
+                    setPersonalInfo({ ...personalInfo, github: e.target.value })
+                  }
                 />
               </div>
               <div>
@@ -263,55 +307,15 @@ export default function PersonalizationForm() {
                   id="website"
                   placeholder="https://joaosilva.dev"
                   value={personalInfo.website}
-                  onChange={(e) => setPersonalInfo({ ...personalInfo, website: e.target.value })}
+                  onChange={(e) =>
+                    setPersonalInfo({
+                      ...personalInfo,
+                      website: e.target.value,
+                    })
+                  }
                 />
               </div>
             </div>
-          </CardContent>
-        </Card>
-
-        {/* Habilidades */}
-        <Card>
-          <CardHeader>
-            <CardTitle>🚀 Habilidades</CardTitle>
-            <CardDescription>Customize suas principais habilidades técnicas</CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            {skills.map((skill, index) => (
-              <div key={index} className="grid grid-cols-1 md:grid-cols-3 gap-4 p-4 border rounded-lg">
-                <div>
-                  <Label>Nome da Habilidade</Label>
-                  <Input
-                    value={skill.name}
-                    onChange={(e) => updateSkill(index, "name", e.target.value)}
-                    placeholder="Python"
-                  />
-                </div>
-                <div>
-                  <Label>Descrição</Label>
-                  <Input
-                    value={skill.description}
-                    onChange={(e) => updateSkill(index, "description", e.target.value)}
-                    placeholder="Django, Flask, FastAPI"
-                  />
-                </div>
-                <div>
-                  <Label>Cor</Label>
-                  <select
-                    className="w-full p-2 border rounded-md"
-                    value={skill.color}
-                    onChange={(e) => updateSkill(index, "color", e.target.value)}
-                  >
-                    <option value="emerald">Verde</option>
-                    <option value="blue">Azul</option>
-                    <option value="purple">Roxo</option>
-                    <option value="pink">Rosa</option>
-                    <option value="orange">Laranja</option>
-                    <option value="cyan">Ciano</option>
-                  </select>
-                </div>
-              </div>
-            ))}
           </CardContent>
         </Card>
 
@@ -322,7 +326,9 @@ export default function PersonalizationForm() {
               <Briefcase className="h-5 w-5" />
               Projetos ({projects.length})
             </CardTitle>
-            <CardDescription>Adicione seus projetos mais importantes</CardDescription>
+            <CardDescription>
+              Adicione seus projetos mais importantes
+            </CardDescription>
           </CardHeader>
           <CardContent>
             <div className="flex gap-2 mb-6 overflow-x-auto">
@@ -337,7 +343,12 @@ export default function PersonalizationForm() {
                   Projeto {index + 1}
                 </Button>
               ))}
-              <Button variant="outline" size="sm" onClick={addProject} className="whitespace-nowrap bg-transparent">
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={addProject}
+                className="whitespace-nowrap bg-transparent"
+              >
                 <Plus className="h-4 w-4 mr-1" />
                 Adicionar
               </Button>
@@ -346,7 +357,9 @@ export default function PersonalizationForm() {
             {projects[activeProject] && (
               <div className="space-y-4">
                 <div className="flex justify-between items-center">
-                  <h3 className="text-lg font-semibold">Projeto {activeProject + 1}</h3>
+                  <h3 className="text-lg font-semibold">
+                    Projeto {activeProject + 1}
+                  </h3>
                   {projects.length > 1 && (
                     <Button
                       variant="outline"
@@ -364,7 +377,9 @@ export default function PersonalizationForm() {
                     <Label>Título do Projeto</Label>
                     <Input
                       value={projects[activeProject].title}
-                      onChange={(e) => updateProject(activeProject, "title", e.target.value)}
+                      onChange={(e) =>
+                        updateProject(activeProject, "title", e.target.value)
+                      }
                       placeholder="Meu Projeto Incrível"
                     />
                   </div>
@@ -373,7 +388,9 @@ export default function PersonalizationForm() {
                     <select
                       className="w-full p-2 border rounded-md"
                       value={projects[activeProject].gradient}
-                      onChange={(e) => updateProject(activeProject, "gradient", e.target.value)}
+                      onChange={(e) =>
+                        updateProject(activeProject, "gradient", e.target.value)
+                      }
                     >
                       {gradientOptions.map((gradient, index) => (
                         <option key={index} value={gradient}>
@@ -388,7 +405,13 @@ export default function PersonalizationForm() {
                   <Label>Descrição</Label>
                   <Textarea
                     value={projects[activeProject].description}
-                    onChange={(e) => updateProject(activeProject, "description", e.target.value)}
+                    onChange={(e) =>
+                      updateProject(
+                        activeProject,
+                        "description",
+                        e.target.value
+                      )
+                    }
                     placeholder="Descrição detalhada do projeto, suas funcionalidades e impacto..."
                     rows={3}
                   />
@@ -399,7 +422,9 @@ export default function PersonalizationForm() {
                     <Label>Link GitHub</Label>
                     <Input
                       value={projects[activeProject].github}
-                      onChange={(e) => updateProject(activeProject, "github", e.target.value)}
+                      onChange={(e) =>
+                        updateProject(activeProject, "github", e.target.value)
+                      }
                       placeholder="https://github.com/usuario/projeto"
                     />
                   </div>
@@ -407,7 +432,9 @@ export default function PersonalizationForm() {
                     <Label>Link Demo</Label>
                     <Input
                       value={projects[activeProject].demo}
-                      onChange={(e) => updateProject(activeProject, "demo", e.target.value)}
+                      onChange={(e) =>
+                        updateProject(activeProject, "demo", e.target.value)
+                      }
                       placeholder="https://meuprojeto.com"
                     />
                   </div>
@@ -420,9 +447,15 @@ export default function PersonalizationForm() {
                       value={newTech}
                       onChange={(e) => setNewTech(e.target.value)}
                       placeholder="React"
-                      onKeyPress={(e) => e.key === "Enter" && addTechToProject(activeProject)}
+                      onKeyPress={(e) =>
+                        e.key === "Enter" && addTechToProject(activeProject)
+                      }
                     />
-                    <Button type="button" onClick={() => addTechToProject(activeProject)} size="sm">
+                    <Button
+                      type="button"
+                      onClick={() => addTechToProject(activeProject)}
+                      size="sm"
+                    >
                       <Plus className="h-4 w-4" />
                     </Button>
                   </div>
@@ -432,7 +465,9 @@ export default function PersonalizationForm() {
                         key={techIndex}
                         variant="secondary"
                         className="cursor-pointer hover:bg-red-100"
-                        onClick={() => removeTechFromProject(activeProject, techIndex)}
+                        onClick={() =>
+                          removeTechFromProject(activeProject, techIndex)
+                        }
                       >
                         {tech} <X className="h-3 w-3 ml-1" />
                       </Badge>
@@ -457,5 +492,47 @@ export default function PersonalizationForm() {
         </div>
       </div>
     </div>
-  )
+  );
+}
+
+// Função utilitária para retornar o ícone SVG da linguagem
+function getLanguageIcon(name: string) {
+  if (name.toLowerCase().includes("python")) {
+    return (
+      <img
+        src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"
+        alt="Python"
+        width={50}
+        height={50}
+        style={{ minWidth: 50 }}
+      />
+    );
+  }
+  const icons: Record<string, string> = {
+    JavaScript: "https://techstack-generator.vercel.app/js-icon.svg",
+    TypeScript: "https://techstack-generator.vercel.app/ts-icon.svg",
+    React: "https://techstack-generator.vercel.app/react-icon.svg",
+    Node: "https://techstack-generator.vercel.app/node-icon.svg",
+    Nodejs: "https://techstack-generator.vercel.app/node-icon.svg",
+    NodeJS: "https://techstack-generator.vercel.app/node-icon.svg",
+    Database: "https://techstack-generator.vercel.app/database-icon.svg",
+    Docker: "https://techstack-generator.vercel.app/docker-icon.svg",
+    AWS: "https://techstack-generator.vercel.app/aws-icon.svg",
+    // Adicione mais conforme necessário
+  };
+  const key = Object.keys(icons).find((k) =>
+    name.toLowerCase().includes(k.toLowerCase())
+  );
+  const iconUrl = key
+    ? icons[key]
+    : "https://techstack-generator.vercel.app/react-icon.svg";
+  return (
+    <img
+      src={iconUrl}
+      alt={key || "React"}
+      width={50}
+      height={50}
+      style={{ minWidth: 50 }}
+    />
+  );
 }
