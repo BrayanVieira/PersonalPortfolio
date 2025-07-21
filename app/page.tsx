@@ -25,6 +25,7 @@ import {
   ChevronDown,
   Rocket,
 } from "lucide-react";
+import CardSwap, { Card as CardSwapItem } from "@/components/CardSwap";
 
 // Componente Snake Game Background - VERSÃO ÉPICA!
 function SnakeGameBackground() {
@@ -1299,6 +1300,33 @@ export default function Portfolio() {
               Habilidades
             </h2>
           </motion.div>
+
+          {/* CardSwap destacado para habilidades */}
+          <div style={{ height: "600px", position: "relative" }}>
+            <CardSwap
+              cardDistance={60}
+              verticalDistance={70}
+              delay={5000}
+              pauseOnHover={false}
+            >
+              <Card>
+                <h3>Python</h3>
+                <p>Automação, Web, IA, Python Impressionador</p>
+              </Card>
+              <Card>
+                <h3>Web Development</h3>
+                <p>HTML, CSS, JavaScript, React, Next.js</p>
+              </Card>
+              <Card>
+                <h3>Banco de Dados</h3>
+                <p>SQL, PostgreSQL, MongoDB</p>
+              </Card>
+              <Card>
+                <h3>Infraestrutura & Suporte</h3>
+                <p>Gestão de TI, Redes, Suporte Técnico, ISO 9001</p>
+              </Card>
+            </CardSwap>
+          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {skills.map((skill, index) => (
