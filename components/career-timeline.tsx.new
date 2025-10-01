@@ -27,9 +27,6 @@ import {
   Target,
   Zap,
   Shield,
-  Database,
-  Bot,
-  Globe,
 } from "lucide-react";
 
 type CareerType = "work" | "education" | "project" | "achievement";
@@ -52,6 +49,7 @@ interface CareerItem {
   responsibilities?: string[];
   achievements?: Achievement[];
   technologies?: string[];
+  highlights?: string[];
   link?: string;
   color: string;
   gradient: string;
@@ -60,167 +58,236 @@ interface CareerItem {
 const timelineData: CareerItem[] = [
   {
     id: "work-progt",
-    title: "Analista de TI & Desenvolvedor Full-Stack",
+    title: "Assistente de T.I",
     company: "PROGT LTDA.",
     location: "",
     period: "2021 - Presente",
     type: "work",
     description:
-      "Profissional multifacetado atuando como Analista de TI e Desenvolvedor Full-Stack, combinando desenvolvimento de software, automação de processos e gestão de infraestrutura. Responsável por criar soluções inovadoras que impactam diretamente a eficiência operacional da empresa.",
+      "Profissional com experiência superior a dois anos no campo da Tecnologia da Informação, trabalhando como Assistente de TI na PROGT Industrial. Com formação técnica em TI e atualização contínua, detenho conhecimentos robustos em assistência ao usuário, administração de infraestrutura de TI e envolvimento em projetos de software.",
     responsibilities: [
-      "Desenvolvimento de APIs RESTful em Python (Flask)",
-      "Automação de processos com Selenium e VBA",
-      "Desenvolvimento de Dashboards em Power BI",
-      "Criação de relatórios gerenciais em iReport",
-      "Treinamento e capacitação de usuários",
-      "Elaboração de documentação técnica",
-      "Gerenciamento de redes corporativas (MikroTik)",
-      "Administração de servidores e Active Directory",
-      "Suporte técnico níveis 2 e 3",
+      "Assistência ao usuário e suporte técnico",
+      "Administração de infraestrutura de TI",
+      "Administração de backups",
+      "Monitoramento de redes",
+      "Apoio à aplicação de padrões de qualidade (ISO 9001)",
+      "Solução de problemas e aprimoramento de processos",
+      "Apoio em projetos de software",
+      "Comunicação e colaboração com equipes",
+      "Gerenciamento de projetos de TI",
     ],
     achievements: [
       {
-        title: "Desenvolvimento e Integração",
+        title: "Aprimoramento de Processos",
         description:
-          "Criação de mais de 15 APIs RESTful e automação de processos críticos.",
-        icon: Code,
-        color: "text-blue-600",
-      },
-      {
-        title: "Capacitação Técnica",
-        description: "Treinamento de mais de 50 usuários em diversos setores.",
-        icon: Users,
+          "Contribuição para a evolução dos procedimentos e eficácia operacional.",
+        icon: Rocket,
         color: "text-green-600",
       },
       {
-        title: "Infraestrutura",
-        description: "Gestão eficiente de redes e sistemas corporativos.",
+        title: "Apoio à Qualidade",
+        description: "Participação na aplicação de padrões como a ISO 9001.",
         icon: Shield,
-        color: "text-purple-600",
+        color: "text-blue-600",
       },
     ],
     technologies: [
-      "Python (Flask, Django)",
-      "React.js",
-      "TypeScript",
-      "Power BI",
-      "Selenium",
-      "VBA",
-      "SQL/NoSQL",
-      "MikroTik",
-      "Windows Server",
+      "Assistência Técnica",
+      "Administração de Backups",
+      "Monitoramento de Redes",
+      "ISO 9001",
+      "Comunicação",
+      "Gerenciamento de Projetos",
+    ],
+    highlights: [
+      "Foco em solução de problemas",
+      "Aprimoramento de processos",
+      "Desenvolvimento coletivo",
     ],
     color: "border-emerald-500",
     gradient: "from-emerald-400 to-teal-500",
   },
   {
-    id: "proj-ssma",
-    title: "Sistema de Controle SSMA",
-    company: "PROGT LTDA.",
+    id: "educacao-1",
+    title: "Análise e Desenvolvimento de Sistemas",
+    company: "Cruzeiro do Sul",
+    location: "",
+    period: "2022 - 2025",
+    type: "education",
+    description: "Curso superior concluído em 2025.",
+    achievements: [],
+    technologies: [],
+    highlights: [],
+    color: "border-blue-500",
+    gradient: "from-blue-400 to-cyan-500",
+  },
+  {
+    id: "educacao-2",
+    title: "Python Impressionador",
+    company: "HashTag",
     location: "",
     period: "2023",
-    type: "project",
-    description:
-      "Sistema completo para gestão de Saúde, Segurança e Meio Ambiente, incluindo controle de treinamentos, documentações e indicadores de segurança dos colaboradores.",
-    achievements: [
-      {
-        title: "Gestão Centralizada",
-        description:
-          "Otimização da gestão de treinamentos e documentações, reduzindo em 40% o tempo de atualização",
-        icon: Shield,
-        color: "text-blue-600",
-      },
-      {
-        title: "Análise de Dados",
-        description:
-          "Dashboards interativos para monitoramento de indicadores de segurança",
-        icon: Database,
-        color: "text-green-600",
-      },
-    ],
-    technologies: [
-      "Python",
-      "Flask",
-      "SQL",
-      "Power BI",
-      "React",
-      "TypeScript",
-      "Docker",
-    ],
-    color: "border-orange-500",
-    gradient: "from-orange-400 to-red-500",
+    type: "education",
+    description: "Concluído",
+    achievements: [],
+    technologies: [],
+    highlights: [],
+    color: "border-green-500",
+    gradient: "from-green-400 to-emerald-500",
   },
   {
-    id: "proj-game",
-    title: "Space Battle - Jogo Web",
-    company: "Projeto Pessoal",
+    id: "educacao-3",
+    title: "HTML & CSS",
+    company: "HashTag",
+    location: "",
+    period: "2023",
+    type: "education",
+    description: "Concluído",
+    achievements: [],
+    technologies: [],
+    highlights: [],
+    color: "border-green-500",
+    gradient: "from-green-400 to-emerald-500",
+  },
+  {
+    id: "educacao-4",
+    title: "VBA",
+    company: "HashTag",
+    location: "",
+    period: "2023",
+    type: "education",
+    description: "Concluído",
+    achievements: [],
+    technologies: [],
+    highlights: [],
+    color: "border-green-500",
+    gradient: "from-green-400 to-emerald-500",
+  },
+  {
+    id: "educacao-5",
+    title: "Inteligência Artificial",
+    company: "HashTag",
+    location: "",
+    period: "2023",
+    type: "education",
+    description: "Concluído",
+    achievements: [],
+    technologies: [],
+    highlights: [],
+    color: "border-green-500",
+    gradient: "from-green-400 to-emerald-500",
+  },
+  {
+    id: "educacao-6",
+    title: "JavaScript",
+    company: "HashTag",
     location: "",
     period: "2024",
-    type: "project",
-    description:
-      "Jogo web interativo desenvolvido com tecnologias modernas, focado em demonstrar habilidades em desenvolvimento front-end e animações.",
-    achievements: [
-      {
-        title: "Desenvolvimento Front-end",
-        description:
-          "Interface responsiva e animações fluidas usando React e Framer Motion",
-        icon: Code,
-        color: "text-indigo-600",
-      },
-      {
-        title: "Game Design",
-        description:
-          "Sistema de pontuação, power-ups e diferentes níveis de dificuldade",
-        icon: Rocket,
-        color: "text-purple-600",
-      },
-    ],
-    technologies: [
-      "React",
-      "TypeScript",
-      "Framer Motion",
-      "TailwindCSS",
-      "Web Animation API",
-    ],
-    link: "https://space-battle-game.vercel.app",
+    type: "education",
+    description: "Concluído",
+    achievements: [],
+    technologies: [],
+    highlights: [],
+    color: "border-green-500",
+    gradient: "from-green-400 to-emerald-500",
+  },
+  {
+    id: "educacao-7",
+    title: "SQL",
+    company: "HashTag",
+    location: "",
+    period: "2024",
+    type: "education",
+    description: "Concluído",
+    achievements: [],
+    technologies: [],
+    highlights: [],
+    color: "border-green-500",
+    gradient: "from-green-400 to-emerald-500",
+  },
+  {
+    id: "educacao-8",
+    title: "Design Gráfico com Corel Draw",
+    company: "Udemy",
+    location: "",
+    period: "2022",
+    type: "education",
+    description: "Concluído",
+    achievements: [],
+    technologies: [],
+    highlights: [],
+    color: "border-yellow-500",
+    gradient: "from-yellow-400 to-orange-500",
+  },
+  {
+    id: "educacao-9",
+    title: "Leitura e Interpretação de Desenho Mecânico",
+    company: "Udemy",
+    location: "",
+    period: "2022",
+    type: "education",
+    description: "Concluído",
+    achievements: [],
+    technologies: [],
+    highlights: [],
+    color: "border-yellow-500",
+    gradient: "from-yellow-400 to-orange-500",
+  },
+  {
+    id: "educacao-10",
+    title: "Big Data Fundamentos",
+    company: "Data Science Academy",
+    location: "",
+    period: "2022",
+    type: "education",
+    description: "Concluído",
+    achievements: [],
+    technologies: [],
+    highlights: [],
+    color: "border-cyan-500",
+    gradient: "from-cyan-400 to-blue-500",
+  },
+  {
+    id: "educacao-11",
+    title: "Introdução a Ciência de Dados",
+    company: "Data Science Academy",
+    location: "",
+    period: "2022",
+    type: "education",
+    description: "Concluído",
+    achievements: [],
+    technologies: [],
+    highlights: [],
+    color: "border-cyan-500",
+    gradient: "from-cyan-400 to-blue-500",
+  },
+  {
+    id: "educacao-12",
+    title: "Introdução UI UX",
+    company: "DIO",
+    location: "",
+    period: "2023",
+    type: "education",
+    description: "Concluído",
+    achievements: [],
+    technologies: [],
+    highlights: [],
+    color: "border-pink-500",
+    gradient: "from-pink-400 to-rose-500",
+  },
+  {
+    id: "educacao-13",
+    title: "Inglês Avançado (Fluente)",
+    company: "CNA",
+    location: "",
+    period: "2024",
+    type: "education",
+    description: "Concluído",
+    achievements: [],
+    technologies: [],
+    highlights: [],
     color: "border-indigo-500",
-    gradient: "from-indigo-400 to-violet-500",
-  },
-  {
-    id: "proj-automation",
-    title: "Automação de Cadastros de Produtos",
-    company: "PROGT LTDA.",
-    location: "",
-    period: "2024",
-    type: "project",
-    description:
-      "Sistema de automação avançado utilizando Python e Selenium para otimizar o processo de cadastro de produtos, reduzindo significativamente o tempo operacional e eliminando erros manuais.",
-    achievements: [
-      {
-        title: "Eficiência Operacional",
-        description:
-          "Redução de 90% no tempo de cadastro e zero erros de entrada de dados",
-        icon: Bot,
-        color: "text-purple-600",
-      },
-      {
-        title: "Integração de Sistemas",
-        description:
-          "Automatização do fluxo completo desde a planilha até o sistema ERP",
-        icon: Zap,
-        color: "text-green-600",
-      },
-    ],
-    technologies: [
-      "Python",
-      "Selenium",
-      "Pandas",
-      "PyAutoGUI",
-      "Excel Integration",
-      "Web Scraping",
-    ],
-    color: "border-violet-500",
-    gradient: "from-violet-400 to-purple-500",
+    gradient: "from-indigo-400 to-blue-500",
   },
 ];
 
@@ -350,9 +417,7 @@ export function CareerTimeline() {
                       className={`bg-white/95 dark:bg-slate-800/95 backdrop-blur-sm border-2 ${item.color} hover:shadow-2xl dark:hover:shadow-2xl transition-all duration-300 overflow-hidden`}
                     >
                       {/* Header do Card */}
-                      <div
-                        className={`h-2 bg-gradient-to-r ${item.gradient}`}
-                      />
+                      <div className={`h-2 bg-gradient-to-r ${item.gradient}`} />
 
                       <CardHeader className="pb-4">
                         <div className="flex justify-between items-start mb-2">
@@ -416,11 +481,9 @@ export function CareerTimeline() {
                         )}
 
                         {/* Botão Expandir */}
-                        {((item.responsibilities &&
-                          item.responsibilities.length > 0) ||
-                          (item.achievements && item.achievements.length > 0) ||
-                          (item.technologies &&
-                            item.technologies.length > 0)) && (
+                        {(item.responsibilities?.length > 0 ||
+                          item.achievements?.length > 0 ||
+                          item.highlights?.length > 0) && (
                           <Button
                             variant="ghost"
                             size="sm"
@@ -460,59 +523,72 @@ export function CareerTimeline() {
                                       Responsabilidades
                                     </h4>
                                     <ul className="space-y-1 text-slate-600 dark:text-slate-300">
-                                      {item.responsibilities.map(
-                                        (resp, idx) => (
-                                          <li
-                                            key={idx}
-                                            className="flex items-start gap-2"
-                                          >
-                                            <span className="text-emerald-500 mt-1">
-                                              •
-                                            </span>
-                                            <span className="text-sm">
-                                              {resp}
-                                            </span>
-                                          </li>
-                                        )
-                                      )}
+                                      {item.responsibilities.map((resp, idx) => (
+                                        <li
+                                          key={idx}
+                                          className="flex items-start gap-2"
+                                        >
+                                          <span className="text-emerald-500 mt-1">
+                                            •
+                                          </span>
+                                          <span className="text-sm">{resp}</span>
+                                        </li>
+                                      ))}
                                     </ul>
                                   </div>
                                 )}
 
                               {/* Conquistas */}
-                              {item.achievements &&
-                                item.achievements.length > 0 && (
-                                  <div>
-                                    <h4 className="font-semibold text-slate-800 dark:text-slate-100 mb-3 flex items-center gap-2">
-                                      <Trophy className="h-4 w-4" />
-                                      Principais Conquistas
-                                    </h4>
-                                    <div className="space-y-3">
-                                      {item.achievements.map(
-                                        (achievement, idx) => (
-                                          <div
-                                            key={idx}
-                                            className="flex items-start gap-3 p-3 bg-slate-50 dark:bg-slate-700/50 rounded-lg"
-                                          >
-                                            <div
-                                              className={`${achievement.color} mt-0.5`}
-                                            >
-                                              <achievement.icon className="h-5 w-5" />
-                                            </div>
-                                            <div>
-                                              <h5 className="font-medium text-slate-800 dark:text-slate-100">
-                                                {achievement.title}
-                                              </h5>
-                                              <p className="text-sm text-slate-600 dark:text-slate-300">
-                                                {achievement.description}
-                                              </p>
-                                            </div>
-                                          </div>
-                                        )
-                                      )}
-                                    </div>
+                              {item.achievements && item.achievements.length > 0 && (
+                                <div>
+                                  <h4 className="font-semibold text-slate-800 dark:text-slate-100 mb-3 flex items-center gap-2">
+                                    <Trophy className="h-4 w-4" />
+                                    Principais Conquistas
+                                  </h4>
+                                  <div className="space-y-3">
+                                    {item.achievements.map((achievement, idx) => (
+                                      <div
+                                        key={idx}
+                                        className="flex items-start gap-3 p-3 bg-slate-50 dark:bg-slate-700/50 rounded-lg"
+                                      >
+                                        <div
+                                          className={`${achievement.color} mt-0.5`}
+                                        >
+                                          <achievement.icon className="h-5 w-5" />
+                                        </div>
+                                        <div>
+                                          <h5 className="font-medium text-slate-800 dark:text-slate-100">
+                                            {achievement.title}
+                                          </h5>
+                                          <p className="text-sm text-slate-600 dark:text-slate-300">
+                                            {achievement.description}
+                                          </p>
+                                        </div>
+                                      </div>
+                                    ))}
                                   </div>
-                                )}
+                                </div>
+                              )}
+
+                              {/* Highlights */}
+                              {item.highlights && item.highlights.length > 0 && (
+                                <div>
+                                  <h4 className="font-semibold text-slate-800 dark:text-slate-100 mb-2 flex items-center gap-2">
+                                    <Star className="h-4 w-4" />
+                                    Destaques
+                                  </h4>
+                                  <div className="flex flex-wrap gap-2">
+                                    {item.highlights.map((highlight, idx) => (
+                                      <Badge
+                                        key={idx}
+                                        className={`bg-gradient-to-r ${item.gradient} text-white border-0`}
+                                      >
+                                        {highlight}
+                                      </Badge>
+                                    ))}
+                                  </div>
+                                </div>
+                              )}
                             </motion.div>
                           )}
                         </AnimatePresence>

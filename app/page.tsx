@@ -1,7 +1,9 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
+import SkillsCloud from "@/components/SkillsCloud";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import { MobileMenu } from "@/components/mobile-menu";
 import {
   Card,
   CardContent,
@@ -30,13 +32,7 @@ import CardSwap, { Card as CardSwapItem } from "@/components/CardSwap";
 // Componente Snake Game Background - VERSÃO ÉPICA!
 function SnakeGameBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [gameStats, setGameStats] = useState({
-    score: 0,
-    highScore: 0,
-    level: 1,
-    snakesAlive: 3,
-    powerUpsActive: 0,
-  });
+  // Estado removido pois não é mais necessário
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -47,13 +43,8 @@ function SnakeGameBackground() {
 
     let w: number, h: number;
     const gridSize = 20;
-    let gameScore = 0;
+    // Variáveis de jogo simplificadas
     let gameLevel = 1;
-    let levelUpScore = 100;
-
-    // Carregar high score do localStorage
-    const savedHighScore = localStorage.getItem("snake-portfolio-highscore");
-    let highScore = savedHighScore ? Number.parseInt(savedHighScore) : 0;
 
     // Partículas para efeitos especiais
     const particles: any[] = [];
@@ -110,7 +101,6 @@ function SnakeGameBackground() {
           ],
         },
         powerUps: new Map(),
-        score: 0,
         alive: true,
         trail: [],
         id: "cyan",
@@ -132,7 +122,6 @@ function SnakeGameBackground() {
           ],
         },
         powerUps: new Map(),
-        score: 0,
         alive: true,
         trail: [],
         id: "green",
@@ -176,7 +165,6 @@ function SnakeGameBackground() {
           ],
         },
         powerUps: new Map(),
-        score: 0,
         alive: true,
         trail: [],
         id: "red",
@@ -198,17 +186,16 @@ function SnakeGameBackground() {
           ],
         },
         powerUps: new Map(),
-        score: 0,
         alive: true,
         trail: [],
         id: "yellow",
       },
     ];
 
-    // Múltiplas maçãs com valores diferentes
+    // Comidas para as cobras
     const foods = [
-      { x: 15, y: 15, color: "red", value: 10, special: false },
-      { x: 25, y: 20, color: "green", value: 15, special: false },
+      { x: 15, y: 15, color: "red", special: false },
+      { x: 25, y: 20, color: "green", special: false },
       { x: 35, y: 10, color: "purple", value: 20, special: false },
       { x: 5, y: 30, color: "orange", value: 25, special: false },
       { x: 40, y: 25, color: "pink", value: 30, special: false },
@@ -485,19 +472,8 @@ function SnakeGameBackground() {
       if (eatenFoodIndex !== -1) {
         const eatenFood = foods[eatenFoodIndex];
 
-        // Adicionar pontos
-        snake.score += eatenFood.value;
-        gameScore += eatenFood.value;
-
-        // Efeitos visuais
+        // Efeitos visuais quando come a comida
         createParticle(eatenFood.x, eatenFood.y, eatenFood.color, "food");
-
-        // Verificar level up
-        if (gameScore >= levelUpScore) {
-          gameLevel++;
-          levelUpScore += 100 * gameLevel;
-          createParticle(head.x, head.y, "gold", "levelup");
-        }
 
         foods.splice(eatenFoodIndex, 1);
         const newFood = getRandomPosition();
@@ -1016,26 +992,6 @@ function SnakeGameBackground() {
           background: "transparent",
         }}
       />
-
-      {/* Game Stats Overlay - Mobile */}
-      <div className="fixed top-20 right-4 z-30 md:hidden">
-        <div className="bg-white/90 dark:bg-slate-800/90 backdrop-blur-sm rounded-lg p-3 border border-teal-200 dark:border-teal-700 shadow-lg">
-          <div className="text-xs space-y-1">
-            <div className="flex items-center gap-2">
-              <span>🏆</span>
-              <span>{gameStats.score}</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <span>⭐</span>
-              <span>{gameStats.highScore}</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <span>🎯</span>
-              <span>Nv.{gameStats.level}</span>
-            </div>
-          </div>
-        </div>
-      </div>
     </>
   );
 }
@@ -1154,7 +1110,7 @@ export default function Portfolio() {
               <ThemeToggle />
             </div>
             <div className="md:hidden">
-              <ThemeToggle />
+              <MobileMenu />
             </div>
           </div>
         </div>
@@ -1248,39 +1204,27 @@ export default function Portfolio() {
             <img
               src="/profile.jpg"
               alt="Foto de perfil"
-              width={380}
-              height={380}
-              style={{
-                borderRadius: "9999px",
-                boxShadow: "0 4px 32px rgba(0,0,0,0.18)",
-                border: "6px solid #fff",
-                objectFit: "cover",
-              }}
-              className="mt-6 md:mt-0 md:ml-auto"
+              className="w-48 h-48 md:w-64 md:h-64 rounded-full shadow-lg border-4 border-white object-cover mt-6 md:mt-0 md:ml-auto"
             />
             <div>
               <h2 className="text-4xl font-bold mb-8 bg-gradient-to-r from-teal-600 to-cyan-600 dark:from-teal-400 dark:to-cyan-400 bg-clip-text text-transparent">
                 Sobre Mim
               </h2>
               <p className="text-lg text-slate-600 dark:text-slate-300 leading-relaxed mb-6">
-                Profissional de Tecnologia da Informação com 3 anos de
-                experiência em desenvolvimento de software, aliado a uma sólida
-                base em suporte técnico e gestão de infraestrutura de TI. Tenho
-                me dedicado ao aprimoramento contínuo de minhas habilidades
-                técnicas, com foco em linguagens de programação, frameworks e
-                metodologias ágeis, visando sempre oferecer soluções inovadoras
-                e eficientes.
+                Profissional de Tecnologia da Informação com mais de 3 anos de
+                experiência em desenvolvimento full-stack, integração de
+                sistemas e infraestrutura corporativa. Possuo uma sólida base em
+                suporte técnico e gestão de TI, com foco em performance,
+                automação e entrega de valor para o negócio.
               </p>
               <p className="text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
-                Experiência prévia no suporte ao usuário, gestão de redes e
-                implementação de projetos de software, desenvolvendo visão
-                analítica, resiliência e capacidade de resolver problemas de
-                forma prática e eficaz. Busco integrar equipes
-                multidisciplinares, agregando valor através do desenvolvimento
-                de soluções tecnológicas para negócios dinâmicos e desafiadores.
-                Comprometido com a excelência e evolução profissional, preparado
-                para colaborar em projetos que exijam criatividade, inovação e
-                uma abordagem estratégica voltada para resultados.
+                Minha trajetória é marcada pelo aprimoramento contínuo de
+                habilidades técnicas, visando oferecer soluções inovadoras e
+                eficientes. Com experiência em desenvolvimento de APIs RESTful,
+                automação de processos, criação de dashboards e gestão de
+                infraestrutura, busco integrar equipes multidisciplinares e
+                contribuir com soluções tecnológicas que atendam às necessidades
+                de negócios dinâmicos e desafiadores.
               </p>
             </div>
           </motion.div>
@@ -1290,42 +1234,25 @@ export default function Portfolio() {
       {/* Skills Section */}
       <section id="skills" className="py-20 relative z-20">
         <div className="container mx-auto px-6">
+          {/* Título da Seção */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
+            viewport={{ once: true, amount: 0.2 }}
           >
             <h2 className="text-4xl font-bold mb-8 bg-gradient-to-r from-emerald-600 to-teal-600 dark:from-emerald-400 dark:to-teal-400 bg-clip-text text-transparent">
               Habilidades
             </h2>
+            <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+              Minhas principais competências técnicas e profissionais.
+            </p>
           </motion.div>
 
-          {/* CardSwap destacado para habilidades */}
-          <div style={{ height: "600px", position: "relative" }}>
-            <CardSwap
-              cardDistance={60}
-              verticalDistance={70}
-              delay={5000}
-              pauseOnHover={false}
-            >
-              <Card>
-                <h3>Python</h3>
-                <p>Automação, Web, IA, Python Impressionador</p>
-              </Card>
-              <Card>
-                <h3>Web Development</h3>
-                <p>HTML, CSS, JavaScript, React, Next.js</p>
-              </Card>
-              <Card>
-                <h3>Banco de Dados</h3>
-                <p>SQL, PostgreSQL, MongoDB</p>
-              </Card>
-              <Card>
-                <h3>Infraestrutura & Suporte</h3>
-                <p>Gestão de TI, Redes, Suporte Técnico, ISO 9001</p>
-              </Card>
-            </CardSwap>
+          {/* Nuvem de Habilidades - Componente Importado */}
+          <div className="flex justify-center mb-16">
+            <SkillsCloud />
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -1478,16 +1405,6 @@ export default function Portfolio() {
               Interessado em trabalhar juntos? Preencha o formulário abaixo ou
               entre em contato diretamente.
               <br />
-              <span className="block mt-2">
-                <strong>Email:</strong>{" "}
-                <a
-                  href="mailto:vieirabrayan158@gmail.com"
-                  className="text-teal-600 dark:text-teal-400 underline"
-                >
-                  vieirabrayan158@gmail.com
-                </a>{" "}
-                • Respondo em até 24h
-              </span>
             </p>
           </motion.div>
 
@@ -1542,8 +1459,7 @@ export default function Portfolio() {
       <footer className="py-8 border-t border-teal-200 dark:border-slate-700 bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm relative z-20 transition-colors duration-300">
         <div className="container mx-auto px-6 text-center">
           <p className="text-slate-500 dark:text-slate-400">
-            © 2024 Portfolio. Desenvolvido com ❤️ e batalha épica de cobras
-            Python! 🐍⚔️
+            © 2024 Portfolio. Desenvolvido com muito café e madrugadas em claro.
           </p>
         </div>
       </footer>

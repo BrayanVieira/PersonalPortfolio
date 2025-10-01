@@ -463,11 +463,11 @@ export function ContactForm() {
             </p>
             <div className="flex flex-col sm:flex-row gap-2 justify-center items-center">
               <a
-                href="mailto:seuemail@exemplo.com"
+                href="mailto:vieirabrayan813@gmail.com"
                 className="text-teal-600 dark:text-teal-400 hover:underline flex items-center gap-1"
               >
                 <Mail className="h-4 w-4" />
-                seuemail@exemplo.com
+                vieirabrayan813@gmail.com
               </a>
               <span className="hidden sm:inline text-slate-400">•</span>
               <span className="text-sm text-slate-500 dark:text-slate-400">
