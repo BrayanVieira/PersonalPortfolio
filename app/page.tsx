@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import SkillsCloud from "@/components/SkillsCloud";
+import SkillsGrid from "@/components/SkillsGrid";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { MobileMenu } from "@/components/mobile-menu";
@@ -15,7 +15,7 @@ import { Badge } from "@/components/ui/badge";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { ContactForm } from "@/components/contact-form";
 import { CareerTimeline } from "@/components/career-timeline";
-import { CertificationsGallery } from "@/components/certifications-gallery";
+import CertificationsGallery from "@/components/certifications-gallery";
 import {
   Github,
   Linkedin,
@@ -1250,9 +1250,9 @@ export default function Portfolio() {
             </p>
           </motion.div>
 
-          {/* Nuvem de Habilidades - Componente Importado */}
-          <div className="flex justify-center mb-16">
-            <SkillsCloud />
+          {/* Grid de Habilidades com Efeito 3D */}
+          <div className="mb-16">
+            <SkillsGrid />
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
